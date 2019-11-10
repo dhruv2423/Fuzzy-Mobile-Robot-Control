@@ -1,0 +1,87 @@
+[System]
+Name='FCproject2'
+Type='mamdani'
+Version=2.0
+NumInputs=4
+NumOutputs=2
+NumRules=13
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Distance'
+Range=[0 50]
+NumMFs=5
+MF1='Zero':'trimf',[-12.5 0 3]
+MF2='Very_Small':'trimf',[0 3 8]
+MF3='Small':'trimf',[3 8 10]
+MF4='Medium':'trimf',[8 10 13]
+MF5='Very_Large':'trapmf',[10 13 100 120]
+
+[Input2]
+Name='Relative_Angle'
+Range=[-180 180]
+NumMFs=5
+MF1='NH':'trimf',[-270 -180 -90]
+MF2='NL':'trimf',[-180 -90 0]
+MF3='Zero':'trimf',[-90 0 90]
+MF4='PL':'trimf',[0 90 180]
+MF5='PH':'trimf',[90 180 270]
+
+[Input3]
+Name='Radial_Velocity'
+Range=[0 1]
+NumMFs=5
+MF1='Zero':'trimf',[-0.25 0 0.25]
+MF2='Very_Less':'trimf',[0 0.25 0.5]
+MF3='Less':'trimf',[0.25 0.5 0.75]
+MF4='Medium':'trimf',[0.5 0.75 1]
+MF5='Big':'trimf',[0.75 1 1.25]
+
+[Input4]
+Name='Rotational_Velocity'
+Range=[-60 60]
+NumMFs=5
+MF1='Nh':'trimf',[-90 -60 -30]
+MF2='NL':'trimf',[-60 -30 0]
+MF3='Zero':'trimf',[-30 0 30]
+MF4='PL':'trimf',[0 30 60]
+MF5='PH':'trimf',[30 60 90]
+
+[Output1]
+Name='Radial_Acceleration'
+Range=[-0.2 0.2]
+NumMFs=5
+MF1='NH':'trimf',[-0.3 -0.2 -0.1]
+MF2='NL':'trimf',[-0.2 -0.1 0]
+MF3='Zero':'trimf',[-0.1 0 0.1]
+MF4='PL':'trimf',[0 0.1 0.2]
+MF5='PH':'trimf',[0.1 0.2 0.3]
+
+[Output2]
+Name='Rotational_Acceleration'
+Range=[-20 20]
+NumMFs=5
+MF1='NH':'trimf',[-30 -20 -10]
+MF2='NL':'trimf',[-20 -10 0]
+MF3='Zero':'trimf',[-10 -1.11e-16 10]
+MF4='PL':'trimf',[0 10 20]
+MF5='PH':'trimf',[10 20 30]
+
+[Rules]
+-5 0 -5 0, 3 0 (1) : 1
+1 0 -1 0, 2 0 (1) : 1
+0 5 0 3, 0 4 (1) : 1
+0 4 0 3, 0 4 (1) : 1
+0 2 0 3, 0 2 (1) : 1
+0 1 0 3, 0 2 (1) : 1
+0 3 0 4, 0 2 (1) : 1
+0 3 0 5, 0 1 (1) : 1
+0 3 0 2, 0 4 (1) : 1
+0 3 0 1, 0 5 (1) : 1
+5 0 0 0, 5 0 (1) : 1
+4 0 -3 0, 2 0 (1) : 1
+2 0 2 0, 4 0 (1) : 1

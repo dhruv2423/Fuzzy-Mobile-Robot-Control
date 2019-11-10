@@ -1,0 +1,103 @@
+[System]
+Name='FCproject'
+Type='mamdani'
+Version=2.0
+NumInputs=4
+NumOutputs=2
+NumRules=17
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Distance_Dg_Meters'
+Range=[0 50]
+NumMFs=7
+MF1='Zero':'trimf',[-5 0 3]
+MF2='Very_Small':'trimf',[3 5 7]
+MF3='Small':'trimf',[0 3 5]
+MF4='Medium':'trimf',[5 7 9]
+MF5='Medium-Large':'trimf',[7 9 11]
+MF6='Large':'trimf',[9 11 13]
+MF7='Very_Large':'trapmf',[11 13 100 120]
+
+[Input2]
+Name='Relative_Angle_Degrees'
+Range=[-180 180]
+NumMFs=7
+MF1='Negative_High':'trimf',[-180 -180 -120]
+MF2='Negative_Medium':'trimf',[-180 -120 -60.01]
+MF3='Negative_Low':'trimf',[-120 -60.01 0]
+MF4='Zero':'trimf',[-60 0 60]
+MF5='Positive_Low':'trimf',[0 60 120]
+MF6='Positive_Medium':'trimf',[60.01 120 180]
+MF7='Positive_High':'trimf',[120 180 180]
+
+[Input3]
+Name='Radial_Velocity_m/sec'
+Range=[0 1]
+NumMFs=7
+MF1='Zero':'trimf',[-0.1667 0 0.1667]
+MF2='Very_Small':'trimf',[0 0.1667 0.3333]
+MF3='Quite_Small':'trimf',[0.1667 0.3333 0.5]
+MF4='Small':'trimf',[0.3333 0.5 0.6667]
+MF5='Medium':'trimf',[0.5 0.6667 0.8333]
+MF6='Big':'trimf',[0.6667 0.8333 1]
+MF7='Very_Big':'trimf',[0.8333 1 1.167]
+
+[Input4]
+Name='Rotation_Velocity_deg/sec'
+Range=[-60 60]
+NumMFs=7
+MF1='NPAVHigh':'trimf',[-80 -60 -40]
+MF2='NPAVMedium':'trimf',[-60 -40 -20]
+MF3='NPAVLow':'trimf',[-40 -20 0]
+MF4='PAVzero':'trimf',[-20 0 20]
+MF5='PAVLow':'trimf',[0 20 40]
+MF6='PAVMedium':'trimf',[20 40 60]
+MF7='PAVHigh':'trimf',[40 60 80.04]
+
+[Output1]
+Name='Radial_Acc'
+Range=[-0.2 0.2]
+NumMFs=7
+MF1='NH':'trimf',[-0.2667 -0.2 -0.1333]
+MF2='NM':'trimf',[-0.2 -0.1333 -0.06668]
+MF3='NL':'trimf',[-0.1 -0.05 0]
+MF4='zero':'trimf',[-0.05 0 0.05]
+MF5='PL':'trimf',[0 0.05 0.1]
+MF6='PM':'trimf',[0.06668 0.1333 0.2]
+MF7='PH':'trimf',[0.1333 0.2 0.2668]
+
+[Output2]
+Name='Rotational_Acc'
+Range=[-20 20]
+NumMFs=7
+MF1='ANH':'trimf',[-26.67 -20 -13.33]
+MF2='ANM':'trimf',[-20 -13.33 -6.668]
+MF3='ANL':'trimf',[-10 -5 0]
+MF4='Azero':'trimf',[-5 0 5]
+MF5='APL':'trimf',[0 5 10]
+MF6='APM':'trimf',[6.668 13.33 20]
+MF7='APH':'trimf',[13.33 20 26.68]
+
+[Rules]
+-7 0 -6 0, 5 0 (1) : 1
+1 0 -1 0, 1 0 (1) : 1
+0 7 0 4, 0 6 (1) : 1
+0 6 0 4, 0 5 (1) : 1
+0 5 0 4, 0 5 (1) : 1
+0 3 0 4, 0 3 (1) : 1
+0 2 0 4, 0 3 (1) : 1
+0 1 0 4, 0 2 (1) : 1
+0 4 0 5, 0 3 (1) : 1
+0 4 0 6, 0 3 (1) : 1
+0 4 0 7, 0 3 (1) : 1
+0 4 0 3, 0 5 (1) : 1
+0 4 0 2, 0 5 (1) : 1
+0 4 0 1, 0 5 (1) : 1
+7 0 0 0, 7 0 (1) : 1
+-1 0 1 0, 7 0 (1) : 1
+4 0 -3 0, 1 0 (1) : 1
